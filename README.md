@@ -1,2 +1,2 @@
 # diner
-Diner - diet editor tool
+Diner - diet editor

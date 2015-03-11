@@ -1,24 +1,22 @@
 package pl.sluzalec.pawel.diner.view;
 
-import java.net.URL;
-import java.util.ResourceBundle;
-
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.fxml.Initializable;
-import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TextField;
+import javafx.scene.control.TreeItem;
 import javafx.scene.control.TreeView;
-import javafx.scene.layout.AnchorPane;
-import javafx.stage.Modality;
 import javafx.stage.Stage;
 import pl.sluzalec.pawel.diner.DinerApp;
+import pl.sluzalec.pawel.diner.model.Project;
 
-public class MainOverviewController implements Initializable {
+public class MainOverviewController {
 
 	@FXML
 	private TextField bodyMassTextField;
@@ -27,7 +25,7 @@ public class MainOverviewController implements Initializable {
 	private MenuItem saveAsMenuItem;
 
 	@FXML
-	private TreeView<?> patientTreeView;
+	private TreeView<String> patientTreeView;
 
 	@FXML
 	private TextField haightTextField;
@@ -89,40 +87,58 @@ public class MainOverviewController implements Initializable {
 	@FXML
 	private MenuItem loadMenuItem;
 
-	@FXML
-	public void showAddPatientDialog() {
-		try {
-			
-			FXMLLoader loader = new FXMLLoader();
-			loader.setLocation(DinerApp.class
-					.getResource("view/EditPatientDialog.fxml"));
-			AnchorPane page = (AnchorPane) loader.load();
+	// Reference to DinerApp.
+	private DinerApp dinerApp;
 
-			
-			Stage dialogStage = new Stage();
-			dialogStage.setTitle("Dodaj Pacjenta");
-			dialogStage.initModality(Modality.WINDOW_MODAL);
-			Scene scene = new Scene(page);
-			dialogStage.setScene(scene);
+	// Root TreeList Item.
+	private TreeItem<String> rootItem = new TreeItem<>();
 
-			
-			EditDialogController controller = loader.getController();
-			controller.setDialogStage(dialogStage);
-			
+	// List of project items.
+	private ObservableList<TreeItem<String>> projectItesList = FXCollections
+			.observableArrayList();
 
-			dialogStage.showAndWait();
-			
-		} catch (Exception e) {
-			e.printStackTrace();
-			
-		}
+	public MainOverviewController() {
 		
+		Project project1 = new Project();
+		Project project2 = new Project();
+		
+		projectItesList.add(project1.setItem());
+		projectItesList.add(project2.setItem());
 	}
 
-	@Override
-	public void initialize(URL location, ResourceBundle resources) {
-		// TODO Auto-generated method stub
+	@FXML
+	private void initialize() {
+		initTreeList();
+	}
+
+	@FXML
+	private void handleAbout() {
+
+		Alert alert = new Alert(AlertType.INFORMATION);
+		alert.setTitle("O programie");
+		alert.setContentText("Diner - prosty edytor diet.\nAutor: Paweł Służalec, 2015");
+		alert.setHeaderText(null);
+		alert.showAndWait();
+	}
+
+	@FXML
+	private void handleClose() {
+		Stage stage = dinerApp.getPrimaryStage();
+		stage.close();
+	}
+
+	public void setDinerApp(DinerApp dinerApp) {
+		this.dinerApp = dinerApp;
 
 	}
 
+	public void initTreeList() {
+		
+		rootItem.getChildren().addAll(projectItesList);
+		rootItem.setExpanded(true);
+		patientTreeView.setRoot(rootItem);
+		patientTreeView.setShowRoot(false);
+
+		System.out.println("Aktywowano TreeListView");
+	}
 }

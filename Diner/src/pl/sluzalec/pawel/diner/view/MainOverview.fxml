@@ -6,91 +6,60 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="600.0" prefWidth="800.0"
-	xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1"
-	fx:controller="pl.sluzalec.pawel.diner.view.MainOverviewController">
+<AnchorPane prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pl.sluzalec.pawel.diner.view.MainOverviewController">
 	<children>
-		<MenuBar layoutX="14.0" layoutY="14.0" AnchorPane.leftAnchor="0.0"
-			AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+		<MenuBar layoutX="14.0" layoutY="14.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
 			<menus>
 				<Menu mnemonicParsing="false" text="Plik">
 					<items>
-						<MenuItem fx:id="saveMenuItem" mnemonicParsing="false"
-							text="Zapisz" />
-						<MenuItem fx:id="saveAsMenuItem" mnemonicParsing="false"
-							text="Zapisz jako" />
-						<MenuItem fx:id="loadMenuItem" mnemonicParsing="false"
-							text="Wczytaj" />
-						<MenuItem fx:id="closeMenuItem" mnemonicParsing="false"
-							text="Zamknij" />
+						<MenuItem fx:id="saveMenuItem" mnemonicParsing="false" text="Zapisz" />
+						<MenuItem fx:id="saveAsMenuItem" mnemonicParsing="false" text="Zapisz jako" />
+						<MenuItem fx:id="loadMenuItem" mnemonicParsing="false" text="Wczytaj" />
+						<MenuItem fx:id="closeMenuItem" mnemonicParsing="false" onAction="#handleClose" text="Zamknij" />
 					</items>
 				</Menu>
 				<Menu mnemonicParsing="false" text="Pomoc">
 					<items>
-						<MenuItem fx:id="aboutMenuItem" mnemonicParsing="false"
-							text="O Programie" />
+						<MenuItem fx:id="aboutMenuItem" mnemonicParsing="false" onAction="#handleAbout" text="O Programie" />
 					</items>
 				</Menu>
 			</menus>
 		</MenuBar>
-		<SplitPane dividerPositions="0.29797979797979796" layoutX="107.0"
-			layoutY="186.0" prefHeight="160.0" prefWidth="200.0"
-			AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0"
-			AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="29.0">
+		<SplitPane dividerPositions="0.29797979797979796" layoutX="107.0" layoutY="186.0" prefHeight="160.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="29.0">
 			<items>
-				<AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0"
-					prefWidth="100.0">
+				<AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
 					<children>
-						<ToolBar layoutX="17.0" layoutY="515.0" prefHeight="40.0"
-							prefWidth="200.0" AnchorPane.bottomAnchor="0.0"
-							AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+						<ToolBar layoutX="17.0" layoutY="515.0" prefHeight="40.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
 							<items>
-								<Button fx:id="addPatientButton" defaultButton="true"
-									mnemonicParsing="false" onAction="#showAddPatientDialog" text="Dodaj" />
-								<Button fx:id="deletePatientButton" layoutX="70.0"
-									layoutY="12.0" mnemonicParsing="false" text="Usuń" />
+								<Button defaultButton="true" mnemonicParsing="false" text="Dodaj" />
+								<Button fx:id="deletePatientButton" layoutX="70.0" layoutY="12.0" mnemonicParsing="false" text="Usuń" />
 							</items>
 						</ToolBar>
-						<TreeView fx:id="patientTreeView" layoutX="17.0" layoutY="34.0"
-							prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="40.0"
-							AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0"
-							AnchorPane.topAnchor="0.0" />
+						<TreeView fx:id="patientTreeView" editable="true" fixedCellSize="24.0" layoutX="17.0" layoutY="34.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="40.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+
+
 					</children>
 				</AnchorPane>
-				<AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0"
-					prefWidth="100.0">
+				<AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
 					<children>
-						<TabPane layoutX="127.0" layoutY="96.0" prefHeight="569.0"
-							prefWidth="556.0" tabClosingPolicy="UNAVAILABLE"
-							AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0"
-							AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+						<TabPane layoutX="127.0" layoutY="96.0" prefHeight="569.0" prefWidth="556.0" tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
 							<tabs>
 								<Tab fx:id="patientDataTab" text="Dane Pacjenta">
 									<content>
 										<GridPane>
 											<columnConstraints>
-												<ColumnConstraints hgrow="SOMETIMES"
-													minWidth="10.0" prefWidth="100.0" />
-												<ColumnConstraints hgrow="SOMETIMES"
-													minWidth="10.0" prefWidth="100.0" />
+												<ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+												<ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
 											</columnConstraints>
 											<rowConstraints>
-												<RowConstraints minHeight="10.0" prefHeight="30.0"
-													vgrow="SOMETIMES" />
-												<RowConstraints minHeight="10.0" prefHeight="30.0"
-													vgrow="SOMETIMES" />
-												<RowConstraints minHeight="10.0" prefHeight="30.0"
-													vgrow="SOMETIMES" />
-												<RowConstraints minHeight="10.0" prefHeight="30.0"
-													vgrow="SOMETIMES" />
-												<RowConstraints minHeight="10.0" prefHeight="30.0"
-													vgrow="SOMETIMES" />
-												<RowConstraints minHeight="10.0" prefHeight="30.0"
-													vgrow="SOMETIMES" />
-												<RowConstraints minHeight="10.0" prefHeight="30.0"
-													vgrow="SOMETIMES" />
-												<RowConstraints minHeight="10.0" prefHeight="30.0"
-													vgrow="SOMETIMES" />
+												<RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+												<RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+												<RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+												<RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+												<RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+												<RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+												<RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+												<RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
 											</rowConstraints>
 											<children>
 												<Label text="Imię:">
@@ -128,44 +97,37 @@
 														<Insets left="15.0" />
 													</GridPane.margin>
 												</Label>
-												<TextField fx:id="nameTextField"
-													GridPane.columnIndex="1">
+												<TextField fx:id="nameTextField" GridPane.columnIndex="1">
 													<GridPane.margin>
 														<Insets left="15.0" right="15.0" />
 													</GridPane.margin>
 												</TextField>
-												<TextField fx:id="lastNameTextField"
-													GridPane.columnIndex="1" GridPane.rowIndex="1">
+												<TextField fx:id="lastNameTextField" GridPane.columnIndex="1" GridPane.rowIndex="1">
 													<GridPane.margin>
 														<Insets left="15.0" right="15.0" />
 													</GridPane.margin>
 												</TextField>
-												<TextField fx:id="ageTextField"
-													GridPane.columnIndex="1" GridPane.rowIndex="3">
+												<TextField fx:id="ageTextField" GridPane.columnIndex="1" GridPane.rowIndex="3">
 													<GridPane.margin>
 														<Insets left="15.0" right="15.0" />
 													</GridPane.margin>
 												</TextField>
-												<TextField fx:id="bodyMassTextField"
-													GridPane.columnIndex="1" GridPane.rowIndex="4">
+												<TextField fx:id="bodyMassTextField" GridPane.columnIndex="1" GridPane.rowIndex="4">
 													<GridPane.margin>
 														<Insets left="15.0" right="15.0" />
 													</GridPane.margin>
 												</TextField>
-												<TextField fx:id="haightTextField"
-													GridPane.columnIndex="1" GridPane.rowIndex="5">
+												<TextField fx:id="haightTextField" GridPane.columnIndex="1" GridPane.rowIndex="5">
 													<GridPane.margin>
 														<Insets left="15.0" right="15.0" />
 													</GridPane.margin>
 												</TextField>
-												<TextField fx:id="weistTextField"
-													GridPane.columnIndex="1" GridPane.rowIndex="6">
+												<TextField fx:id="weistTextField" GridPane.columnIndex="1" GridPane.rowIndex="6">
 													<GridPane.margin>
 														<Insets left="15.0" right="15.0" />
 													</GridPane.margin>
 												</TextField>
-												<TextField fx:id="hipsTextField"
-													GridPane.columnIndex="1" GridPane.rowIndex="7">
+												<TextField fx:id="hipsTextField" GridPane.columnIndex="1" GridPane.rowIndex="7">
 													<GridPane.margin>
 														<Insets left="15.0" right="15.0" />
 													</GridPane.margin>
@@ -175,19 +137,14 @@
 														<Insets left="15.0" />
 													</GridPane.margin>
 												</Label>
-												<HBox alignment="CENTER_LEFT" GridPane.columnIndex="1"
-													GridPane.rowIndex="2">
+												<HBox alignment="CENTER_LEFT" GridPane.columnIndex="1" GridPane.rowIndex="2">
 													<children>
-														<RadioButton fx:id="maleRadioButton"
-															mnemonicParsing="false" text="Mężczyzna"
-															GridPane.columnIndex="1" GridPane.rowIndex="2">
+														<RadioButton fx:id="maleRadioButton" mnemonicParsing="false" text="Mężczyzna" GridPane.columnIndex="1" GridPane.rowIndex="2">
 															<HBox.margin>
 																<Insets left="15.0" />
 															</HBox.margin>
 														</RadioButton>
-														<RadioButton fx:id="femaleRadioButton"
-															mnemonicParsing="false" selected="true" text="Kobieta"
-															GridPane.columnIndex="1" GridPane.rowIndex="2">
+														<RadioButton fx:id="femaleRadioButton" mnemonicParsing="false" selected="true" text="Kobieta" GridPane.columnIndex="1" GridPane.rowIndex="2">
 															<GridPane.margin>
 																<Insets left="15.0" />
 															</GridPane.margin>
@@ -203,32 +160,22 @@
 								</Tab>
 								<Tab fx:id="editorTab" text="Edytor Diety">
 									<content>
-										<AnchorPane minHeight="0.0" minWidth="0.0"
-											prefHeight="180.0" prefWidth="200.0">
+										<AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
 											<children>
-												<ToolBar layoutX="14.0" layoutY="14.0"
-													nodeOrientation="RIGHT_TO_LEFT" prefHeight="40.0"
-													prefWidth="200.0" AnchorPane.leftAnchor="0.0"
-													AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+												<ToolBar layoutX="14.0" layoutY="14.0" nodeOrientation="RIGHT_TO_LEFT" prefHeight="40.0" prefWidth="200.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
 													<items>
-														<Button fx:id="searchButton" layoutX="251.0"
-															layoutY="12.0" mnemonicParsing="false" text="Szukaj" />
-														<TextField fx:id="searchTextield" alignment="CENTER_RIGHT"
-															promptText="Szukaj w Bazie" />
+														<Button fx:id="searchButton" layoutX="251.0" layoutY="12.0" mnemonicParsing="false" text="Szukaj" />
+														<TextField fx:id="searchTextield" alignment="CENTER_RIGHT" promptText="Szukaj w Bazie" />
 													</items>
 												</ToolBar>
-												<TreeView fx:id="editorTreeView" layoutX="111.0"
-													layoutY="139.0" prefHeight="200.0" prefWidth="200.0"
-													AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0"
-													AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="40.0" />
+												<TreeView fx:id="editorTreeView" layoutX="111.0" layoutY="139.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="40.0" />
 											</children>
 										</AnchorPane>
 									</content>
 								</Tab>
 								<Tab fx:id="indexTab" text="Współczynniki i Wykresy">
 									<content>
-										<AnchorPane minHeight="0.0" minWidth="0.0"
-											prefHeight="180.0" prefWidth="200.0" />
+										<AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
 									</content>
 								</Tab>
 							</tabs>

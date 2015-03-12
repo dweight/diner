@@ -252,7 +252,7 @@ public class MainOverviewController {
 		File file = fileChooser.showSaveDialog(dinerApp.getPrimaryStage());
 
 		if (file != null) {
-			//Make sure it has correct extension.
+			// Make sure it has correct extension.
 			if (!file.getPath().endsWith(".xml")) {
 				file = new File(file.getPath() + ".xml");
 			}
@@ -265,8 +265,8 @@ public class MainOverviewController {
 
 		Alert alert = new Alert(AlertType.INFORMATION);
 		alert.setTitle("Diner");
-		alert.setContentText("O programie");
-		alert.setHeaderText("Diner - prosty edytor diet.\nAutor: Paweł Służalec\nStrona WWW: http://github.com/dweight/diner\n 2015");
+		alert.setContentText("Diner - prosty edytor diet.\nAutor: Paweł Służalec\nStrona WWW: http://github.com/dweight/diner\n 2015");
+		alert.setHeaderText("O programie");
 		alert.showAndWait();
 	}
 

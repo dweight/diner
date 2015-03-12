@@ -11,6 +11,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
+import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
@@ -43,7 +44,8 @@ public class DinerApp extends Application {
 	public void start(Stage primaryStage) {
 		this.primaryStage = primaryStage;
 		this.primaryStage.setTitle(APP_NAME);
-
+		this.primaryStage.getIcons()
+				.add(new Image("file:res/images/diner.png"));
 		initMainOverview();
 	}
 
@@ -70,66 +72,71 @@ public class DinerApp extends Application {
 	// Sets the path to currently loaded file.
 	public void setProjectFile(File file) {
 		Preferences prefs = Preferences.userNodeForPackage(DinerApp.class);
-		if(file != null) {
+		if (file != null) {
 			prefs.put("filePath", file.getPath());
-			
-			//Update app title.
+
+			// Update app title.
 			primaryStage.setTitle(APP_NAME + " - " + file.getName());
-		}else {
+		} else {
 			prefs.remove("filePath");
-			
-			//Update app title.
+
+			// Update app title.
 			primaryStage.setTitle(APP_NAME);
 		}
 	}
 
-	//Method to load saved projects from file.
+	// Method to load saved projects from file.
 	public void loadProjectDataFromFile(File file) {
 		try {
-			JAXBContext context = JAXBContext.newInstance(ProjectListWrapper.class);
+			JAXBContext context = JAXBContext
+					.newInstance(ProjectListWrapper.class);
 			Unmarshaller um = context.createUnmarshaller();
-			
-			//Loading file and unmarshalling.
-			ProjectListWrapper wrapper = (ProjectListWrapper)um.unmarshal(file);
-		
+
+			// Loading file and unmarshalling.
+			ProjectListWrapper wrapper = (ProjectListWrapper) um
+					.unmarshal(file);
+
 			projectList.clear();
 			projectList.addAll(wrapper.getProjects());
-			
-			//Save file path to registry.
+
+			// Save file path to registry.
 			setProjectFile(file);
-			
-		}catch(Exception e) {
+
+		} catch (Exception e) {
 			Alert alert = new Alert(AlertType.ERROR);
 			alert.setTitle("Błąd :(");
 			alert.setHeaderText("Nie udało się wczytać danych");
-			alert.setContentText("Nie udało się wczytać pliku:\n" + file.getPath());
+			alert.setContentText("Nie udało się wczytać pliku:\n"
+					+ file.getPath());
 			alert.showAndWait();
 		}
 	}
-	
-	//Method to save current projects to file.
+
+	// Method to save current projects to file.
 	public void saveProjectDataToFile(File file) {
 		try {
-			JAXBContext context = JAXBContext.newInstance(ProjectListWrapper.class);
+			JAXBContext context = JAXBContext
+					.newInstance(ProjectListWrapper.class);
 			Marshaller mar = context.createMarshaller();
 			mar.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
-			
-			//Wrapping project data
+
+			// Wrapping project data
 			ProjectListWrapper wrapper = new ProjectListWrapper();
 			wrapper.setProjects(projectList);
-			
-			//Marshalling and saving to file.
+
+			// Marshalling and saving to file.
 			mar.marshal(wrapper, file);
 			setProjectFile(file);
-		}catch(Exception e) {
+		} catch (Exception e) {
 			Alert alert = new Alert(AlertType.ERROR);
 			alert.setTitle("Błąd :(");
 			alert.setHeaderText("Nie udało się zapisać danych");
-			alert.setContentText("Nie udało się zapisać pliku:\n" + file.getPath());
+			alert.setContentText("Nie udało się zapisać pliku:\n"
+					+ file.getPath());
 			alert.showAndWait();
 		}
 	}
-	
+
 	public void initMainOverview() {
 		try {
 			// Load main view from fxml file.

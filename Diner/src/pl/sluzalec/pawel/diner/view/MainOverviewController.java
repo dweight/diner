@@ -1,5 +1,6 @@
 package pl.sluzalec.pawel.diner.view;
 
+import java.io.File;
 import java.util.Optional;
 
 import javafx.fxml.FXML;
@@ -16,6 +17,8 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.control.TreeView;
+import javafx.stage.FileChooser;
+import javafx.stage.FileChooser.ExtensionFilter;
 import javafx.stage.Stage;
 import pl.sluzalec.pawel.diner.DinerApp;
 import pl.sluzalec.pawel.diner.model.Project;
@@ -170,7 +173,7 @@ public class MainOverviewController {
 		if (okClicked == true) {
 			dinerApp.getProjectList().add(tmpProject);
 		}
-		
+
 	}
 
 	@FXML
@@ -214,19 +217,62 @@ public class MainOverviewController {
 	}
 
 	@FXML
+	private void handleOpen() {
+		FileChooser fileChooser = new FileChooser();
+
+		// Setup filter.
+		FileChooser.ExtensionFilter extFilter = new ExtensionFilter(
+				"Pliki XML (*.xml)", "*.xml");
+		fileChooser.getExtensionFilters().add(extFilter);
+
+		// Show filechooser dialog.
+		File file = fileChooser.showOpenDialog(dinerApp.getPrimaryStage());
+
+		if (file != null) {
+			dinerApp.loadProjectDataFromFile(file);
+		}
+	}
+
+	@FXML
+	private void handleSave() {
+		File projectFile = dinerApp.getProjectFilePath();
+		if (projectFile != null) {
+			dinerApp.saveProjectDataToFile(projectFile);
+		} else {
+			handleSaveAs();
+		}
+	}
+
+	@FXML
+	private void handleSaveAs() {
+		FileChooser fileChooser = new FileChooser();
+		FileChooser.ExtensionFilter extFilter = new ExtensionFilter(
+				"Pliki XML (*.xml)", "*.xml");
+		fileChooser.getExtensionFilters().add(extFilter);
+		File file = fileChooser.showSaveDialog(dinerApp.getPrimaryStage());
+
+		if (file != null) {
+			//Make sure it has correct extension.
+			if (!file.getPath().endsWith(".xml")) {
+				file = new File(file.getPath() + ".xml");
+			}
+			dinerApp.saveProjectDataToFile(file);
+		}
+	}
+
+	@FXML
 	private void handleAbout() {
 
 		Alert alert = new Alert(AlertType.INFORMATION);
-		alert.setTitle("O programie");
-		alert.setContentText("Diner - prosty edytor diet.\nAutor: Paweł Służalec, 2015");
-		alert.setHeaderText(null);
+		alert.setTitle("Diner");
+		alert.setContentText("O programie");
+		alert.setHeaderText("Diner - prosty edytor diet.\nAutor: Paweł Służalec\nStrona WWW: http://github.com/dweight/diner\n 2015");
 		alert.showAndWait();
 	}
 
 	@FXML
 	private void handleClose() {
-		Stage stage = dinerApp.getPrimaryStage();
-		stage.close();
+		System.exit(0);
 	}
 
 }

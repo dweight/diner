@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.input.*?>
 <?import javafx.scene.*?>
 <?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
@@ -13,15 +14,30 @@
 			<menus>
 				<Menu mnemonicParsing="false" text="Plik">
 					<items>
-						<MenuItem fx:id="saveMenuItem" mnemonicParsing="false" text="Zapisz" />
-						<MenuItem fx:id="saveAsMenuItem" mnemonicParsing="false" text="Zapisz jako" />
-						<MenuItem fx:id="loadMenuItem" mnemonicParsing="false" text="Wczytaj" />
-						<MenuItem fx:id="closeMenuItem" mnemonicParsing="false" onAction="#handleClose" text="Zamknij" />
+						<MenuItem fx:id="saveMenuItem" mnemonicParsing="false" onAction="#handleSave" text="Zapisz">
+                     <accelerator>
+                        <KeyCodeCombination alt="UP" code="S" control="ANY" meta="UP" shift="UP" shortcut="UP" />
+                     </accelerator></MenuItem>
+						<MenuItem fx:id="saveAsMenuItem" mnemonicParsing="false" onAction="#handleSaveAs" text="Zapisz jako">
+                     <accelerator>
+                        <KeyCodeCombination alt="UP" code="S" control="ANY" meta="UP" shift="ANY" shortcut="UP" />
+                     </accelerator></MenuItem>
+						<MenuItem fx:id="loadMenuItem" mnemonicParsing="false" onAction="#handleOpen" text="Wczytaj">
+                     <accelerator>
+                        <KeyCodeCombination alt="UP" code="O" control="ANY" meta="UP" shift="UP" shortcut="UP" />
+                     </accelerator></MenuItem>
+						<MenuItem fx:id="closeMenuItem" mnemonicParsing="false" onAction="#handleClose" text="Zamknij">
+                     <accelerator>
+                        <KeyCodeCombination alt="UP" code="Q" control="ANY" meta="UP" shift="UP" shortcut="UP" />
+                     </accelerator></MenuItem>
 					</items>
 				</Menu>
 				<Menu mnemonicParsing="false" text="Pomoc">
 					<items>
-						<MenuItem fx:id="aboutMenuItem" mnemonicParsing="false" onAction="#handleAbout" text="O Programie" />
+						<MenuItem fx:id="aboutMenuItem" mnemonicParsing="false" onAction="#handleAbout" text="O Programie">
+                     <accelerator>
+                        <KeyCodeCombination alt="UP" code="H" control="ANY" meta="UP" shift="UP" shortcut="UP" />
+                     </accelerator></MenuItem>
 					</items>
 				</Menu>
 			</menus>

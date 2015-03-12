@@ -57,34 +57,35 @@ public class EditDialogController implements Initializable {
 
 	public void setPatient() {
 
-		nameTextField.setText(patient.getName());
-		lastNameTextField.setText(patient.getLastName());
-		ageTextField.setText(patient.getAge());
-		bodyMassTextField.setText(Double.toString(patient.getBodyMass()));
-		haigthTextField.setText(Double.toString(patient.getHigth()));
-		waistTextField.setText(Double.toString(patient.getWaist()));
-		hipsTextField.setText(Double.toString(patient.getHips()));
-		if (patient.getGender() == true) {
-			femaleRadioButton.arm();
-		} else {
-			maleRadioButton.arm();
-		}
+//		nameTextField.setText(patient.getName());
+//		lastNameTextField.setText(patient.getLastName());
+//		ageTextField.setText(patient.getAge());
+//		bodyMassTextField.setText(Double.toString(patient.getBodyMass()));
+//		haigthTextField.setText(Double.toString(patient.getHigth()));
+//		waistTextField.setText(Double.toString(patient.getWaist()));
+//		hipsTextField.setText(Double.toString(patient.getHips()));
+//		if (patient.getGender() == true) {
+//			femaleRadioButton.arm();
+//		} else {
+//			maleRadioButton.arm();
+//		}
 	}
 
+	@FXML
 	public void handleOK() {
 		if (isInputValid()) {
-			patient.setName(nameTextField.getText());
-			patient.setLastName(lastNameTextField.getText());
-			patient.setHigth(Double.parseDouble(hipsTextField.getText()));
-			patient.setBodyMass(Double.parseDouble(bodyMassTextField.getText()));
-			patient.setWaist(Double.parseDouble(waistTextField.getText()));
-			patient.setHips(Double.parseDouble(hipsTextField.getText()));
-			patient.setAge(ageTextField.getText());
-			if (femaleRadioButton.isArmed()) {
-				patient.setGender(true);
-			} else {
-				patient.setGender(false);
-			}
+//			patient.setName(nameTextField.getText());
+//			patient.setLastName(lastNameTextField.getText());
+//			patient.setHigth(Double.parseDouble(hipsTextField.getText()));
+//			patient.setBodyMass(Double.parseDouble(bodyMassTextField.getText()));
+//			patient.setWaist(Double.parseDouble(waistTextField.getText()));
+//			patient.setHips(Double.parseDouble(hipsTextField.getText()));
+//			patient.setAge(ageTextField.getText());
+//			if (femaleRadioButton.isArmed()) {
+//				patient.setGender(true);
+//			} else {
+//				patient.setGender(false);
+//			}
 
 			dialogStage.close();
 		}
@@ -160,7 +161,7 @@ public class EditDialogController implements Initializable {
 		if (errorMessage.length() == 0) {
 			return true;
 		} else {
-			
+
 			Alert alert = new Alert(AlertType.ERROR);
 			alert.setTitle("Niewłaściwe dane");
 			alert.setContentText(errorMessage);

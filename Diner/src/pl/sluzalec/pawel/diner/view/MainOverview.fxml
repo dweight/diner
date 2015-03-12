@@ -6,7 +6,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pl.sluzalec.pawel.diner.view.MainOverviewController">
+<AnchorPane prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.40" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pl.sluzalec.pawel.diner.view.MainOverviewController">
 	<children>
 		<MenuBar layoutX="14.0" layoutY="14.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
 			<menus>
@@ -31,7 +31,7 @@
 					<children>
 						<ToolBar layoutX="17.0" layoutY="515.0" prefHeight="40.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
 							<items>
-								<Button defaultButton="true" mnemonicParsing="false" text="Dodaj" />
+								<Button fx:id="addPatientButton" defaultButton="true" mnemonicParsing="false" onAction="#handleAdd" text="Dodaj" />
 								<Button fx:id="deletePatientButton" layoutX="70.0" layoutY="12.0" mnemonicParsing="false" text="Usuń" />
 							</items>
 						</ToolBar>

@@ -8,9 +8,10 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
-import pl.sluzalec.pawel.diner.model.Patient;
 import pl.sluzalec.pawel.diner.model.Project;
+import pl.sluzalec.pawel.diner.view.AddProjectDialogController;
 import pl.sluzalec.pawel.diner.view.MainOverviewController;
 
 public class DinerApp extends Application {
@@ -18,15 +19,15 @@ public class DinerApp extends Application {
 	public final String APP_NAME = "Diner";
 	private Stage primaryStage;
 	private AnchorPane mainOverview;
-	private ObservableList<Project> patientData = FXCollections
+	private ObservableList<Project> projectList = FXCollections
 			.observableArrayList();
 
 	public DinerApp() {
 
-		// Sample data.
-		patientData.add(new Project());
-		
-		
+		addToProjectList(new Project(null, null, "Nowy projekt"));
+		addToProjectList(new Project());
+		System.out.println("Projetk dodany w DinerApp");
+		System.out.println(getProjectList());
 	}
 
 	@Override
@@ -36,10 +37,6 @@ public class DinerApp extends Application {
 
 		initMainOverview();
 
-	}
-
-	public ObservableList<Project> getPatientData() {
-		return patientData;
 	}
 
 	public void initMainOverview() {
@@ -54,13 +51,51 @@ public class DinerApp extends Application {
 			Scene scene = new Scene(mainOverview);
 			primaryStage.setScene(scene);
 			primaryStage.show();
-			
+
 			// Give the controller access to the main app.
 			MainOverviewController controller = loader.getController();
 			controller.setDinerApp(this);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+	}
+
+	public void showAddDialog() {
+		try {
+			// Load the fxml file and create a new stage for the popup dialog.
+			FXMLLoader loader = new FXMLLoader();
+			loader.setLocation(DinerApp.class
+					.getResource("view/AddProjectDialog.fxml"));
+			AnchorPane page = (AnchorPane) loader.load();
+
+			// Create the dialog Stage.
+			Stage dialogStage = new Stage();
+			dialogStage.setTitle("Dodaj Projekt");
+			dialogStage.initModality(Modality.WINDOW_MODAL);
+			dialogStage.initOwner(primaryStage);
+			Scene scene = new Scene(page);
+			dialogStage.setScene(scene);
+
+			// Set the person into the controller.
+			AddProjectDialogController controller = loader.getController();
+			controller.setDialogStage(dialogStage);
+			// controller.setProject(project);
+
+			// Show the dialog and wait until the user closes it
+			dialogStage.showAndWait();
+
+		} catch (IOException e) {
+			e.printStackTrace();
+
+		}
+	}
+
+	public ObservableList<Project> getProjectList() {
+		return projectList;
+	}
+
+	public void addToProjectList(Project project) {
+		projectList.add(project);
 	}
 
 	public Stage getPrimaryStage() {

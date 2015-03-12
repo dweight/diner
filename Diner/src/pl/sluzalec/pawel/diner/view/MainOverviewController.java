@@ -90,25 +90,35 @@ public class MainOverviewController {
 	// Reference to DinerApp.
 	private DinerApp dinerApp;
 
+	// Reference to active project.
+	private Project project;
+
 	// Root TreeList Item.
 	private TreeItem<String> rootItem = new TreeItem<>();
 
-	// List of project items.
-	private ObservableList<TreeItem<String>> projectItesList = FXCollections
+	// List of items.
+	private ObservableList<TreeItem<String>> projectItemsList = FXCollections
 			.observableArrayList();
+
+	
+	
 
 	public MainOverviewController() {
 		
-		Project project1 = new Project();
-		Project project2 = new Project();
-		
-		projectItesList.add(project1.setItem());
-		projectItesList.add(project2.setItem());
+
 	}
 
 	@FXML
 	private void initialize() {
-		initTreeList();
+
+		//initTreeList();
+
+	}
+
+	@FXML
+	private void handleAdd() {
+		dinerApp.showAddDialog();
+
 	}
 
 	@FXML
@@ -129,16 +139,40 @@ public class MainOverviewController {
 
 	public void setDinerApp(DinerApp dinerApp) {
 		this.dinerApp = dinerApp;
-
 	}
 
 	public void initTreeList() {
-		
-		rootItem.getChildren().addAll(projectItesList);
+		ObservableList<Project> projectList = dinerApp.getProjectList();
+		for (Project project : projectList) {
+			projectItemsList.add(project.setItem());
+		}
+		System.out.println("Dodano projekty do listy");
+
+		rootItem.getChildren().addAll(projectItemsList);
 		rootItem.setExpanded(true);
 		patientTreeView.setRoot(rootItem);
 		patientTreeView.setShowRoot(false);
 
+		patientTreeView
+				.getSelectionModel()
+				.selectedItemProperty()
+				.addListener(
+						(observable, oldValue, newValue) -> showPatientData(newValue));
+
 		System.out.println("Aktywowano TreeListView");
 	}
+
+	private void showPatientData(TreeItem<String> newValue) {
+		if (newValue != null) {
+			if (newValue.getValue() == "Dane Pacjenta") {
+				System.out.println("Zaznaczono dane pacjenta!");
+				System.out.println(newValue.getParent());
+
+			}
+
+		} else {
+
+		}
+	}
+
 }

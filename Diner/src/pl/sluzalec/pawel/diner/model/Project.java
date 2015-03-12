@@ -4,24 +4,25 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.control.TreeItem;
 
-public class Project extends TreeItem<String> {
+public class Project {
 
 	private Patient patient = new Patient();
 	private Diet diet;
 	private String name;
-	private ObservableList<TreeItem<String>> dietList = FXCollections.observableArrayList();
+	private ObservableList<TreeItem<String>> dietList = FXCollections
+			.observableArrayList();
 
 	public Project() {
 		this(null, null, "Przykładowy Projekt");
-		dietList.add(new TreeItem<String>("Przykładowa dieta 1"));
-		dietList.add(new TreeItem<String>("Przykładowa dieta 2"));
+		
 	}
 
 	public Project(Patient patient, Diet diet, String name) {
 		this.patient = patient;
 		this.diet = diet;
 		this.name = name;
-
+		dietList.add(new TreeItem<String>("Przykładowa dieta 1"));
+		dietList.add(new TreeItem<String>("Przykładowa dieta 2"));
 	}
 
 	public TreeItem<String> setItem() {
@@ -33,8 +34,19 @@ public class Project extends TreeItem<String> {
 		item.setExpanded(true);
 		item.getChildren().add(patientItem);
 		item.getChildren().add(dietItem);
-		
-		return item;
 
+		return item;
+	}
+
+	public Project getProject() {
+		return this;
+	}
+
+	public Patient getPatient() {
+		return patient;
+	}
+	
+	public String getName() {
+		return name;
 	}
 }

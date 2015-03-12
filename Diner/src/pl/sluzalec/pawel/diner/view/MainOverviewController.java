@@ -1,17 +1,20 @@
 package pl.sluzalec.pawel.diner.view;
 
-import com.sun.webkit.ContextMenu.ShowContext;
+import java.util.Optional;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonBar.ButtonData;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.control.ToggleGroup;
 import javafx.scene.control.TreeView;
 import javafx.stage.Stage;
 import pl.sluzalec.pawel.diner.DinerApp;
@@ -26,10 +29,13 @@ public class MainOverviewController {
 	private MenuItem saveAsMenuItem;
 
 	@FXML
-	private TextField hightTextField;
+	private TextField higthTextField;
 
 	@FXML
 	private Button searchButton;
+
+	@FXML
+	private Button editButton;
 
 	@FXML
 	private MenuItem aboutMenuItem;
@@ -86,6 +92,9 @@ public class MainOverviewController {
 	private MenuItem loadMenuItem;
 
 	@FXML
+	private ToggleGroup genderToggleGroup;
+
+	@FXML
 	private TableView<Project> projectTableView;
 
 	@FXML
@@ -93,6 +102,8 @@ public class MainOverviewController {
 
 	// Reference to DinerApp.
 	private DinerApp dinerApp;
+
+	boolean okClicked = false;
 
 	public MainOverviewController() {
 
@@ -104,17 +115,24 @@ public class MainOverviewController {
 			this.lastNameTextField.setText(project.getLastName());
 			this.ageTextField.setText(project.getAge());
 			this.bodyMassTextField.setText(project.getBodyMass().toString());
-			this.hightTextField.setText(project.getHigth().toString());
+			this.higthTextField.setText(project.getHigth().toString());
 			this.hipsTextField.setText(project.getHigth().toString());
 			this.waistTextField.setText(project.getWaist().toString());
+			if (project.getGender() == true) {
+				this.genderToggleGroup.selectToggle(femaleRadioButton);
+			} else {
+				this.genderToggleGroup.selectToggle(maleRadioButton);
+			}
+
 		} else {
 			this.nameTextField.setText("");
 			this.lastNameTextField.setText("");
 			this.ageTextField.setText("");
 			this.bodyMassTextField.setText("");
-			this.hightTextField.setText("");
+			this.higthTextField.setText("");
 			this.hipsTextField.setText("");
 			this.waistTextField.setText("");
+			this.genderToggleGroup.selectToggle(femaleRadioButton);
 		}
 	}
 
@@ -128,11 +146,12 @@ public class MainOverviewController {
 
 	@FXML
 	private void initialize() {
-		// Initialize project column with project names.
+
+		// Initialize project table with project names.
 		projectTableColumn.setCellValueFactory(cellData -> cellData.getValue()
 				.getProjectName());
 
-		// Clear person details.
+		// Clear patient details.
 		setProjectData(null);
 
 		// Add listner.
@@ -146,7 +165,52 @@ public class MainOverviewController {
 
 	@FXML
 	private void handleAdd() {
-		dinerApp.showAddDialog();
+		Project tmpProject = new Project();
+		boolean okClicked = dinerApp.showAddDialog(tmpProject);
+		if (okClicked == true) {
+			dinerApp.getProjectList().add(tmpProject);
+		}
+		
+	}
+
+	@FXML
+	private void handleEdit() {
+		Project selectedProject = projectTableView.getSelectionModel()
+				.getSelectedItem();
+		if (selectedProject != null) {
+			boolean okClicked = dinerApp.showAddDialog(selectedProject);
+			if (okClicked) {
+				setProjectData(selectedProject);
+			}
+		}
+	}
+
+	@FXML
+	private void handleDelete() {
+
+		int selectedIndex = projectTableView.getSelectionModel()
+				.getSelectedIndex();
+
+		Alert alert = new Alert(AlertType.CONFIRMATION);
+		alert.setTitle("");
+		alert.setHeaderText(null);
+		alert.setContentText("Czy na pewno chcesz usunąć wybrany projekt?");
+
+		ButtonType buttonTypeOk = new ButtonType("Ok", ButtonData.OK_DONE);
+		ButtonType buttonTypeCancel = new ButtonType("Anuluj",
+				ButtonData.CANCEL_CLOSE);
+
+		alert.getButtonTypes().setAll(buttonTypeOk, buttonTypeCancel);
+
+		Optional<ButtonType> result = alert.showAndWait();
+		if (result.get() == buttonTypeOk) {
+			if (selectedIndex != -1) {
+				projectTableView.getItems().remove(selectedIndex);
+			}
+		} else {
+			alert.close();
+		}
+
 	}
 
 	@FXML

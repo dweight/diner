@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.*?>
 <?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
 <?import java.lang.*?>
@@ -31,8 +32,9 @@
 					<children>
 						<ToolBar layoutX="17.0" layoutY="515.0" prefHeight="40.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
 							<items>
-								<Button fx:id="addPatientButton" defaultButton="true" mnemonicParsing="false" onAction="#handleAdd" text="Dodaj" />
-								<Button fx:id="deletePatientButton" layoutX="70.0" layoutY="12.0" mnemonicParsing="false" text="Usuń" />
+								<Button fx:id="addPatientButton" defaultButton="true" mnemonicParsing="false" onAction="#handleAdd" prefWidth="60.0" text="Dodaj" />
+                        <Button fx:id="editButton" mnemonicParsing="false" onAction="#handleEdit" prefWidth="60.0" text="Edytuj" />
+								<Button fx:id="deletePatientButton" layoutX="70.0" layoutY="12.0" mnemonicParsing="false" onAction="#handleDelete" prefWidth="60.0" text="Usuń" />
 							</items>
 						</ToolBar>
 						<TableView fx:id="projectTableView" layoutX="17.0" layoutY="38.0" prefHeight="569.0" prefWidth="234.0" AnchorPane.bottomAnchor="40.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
@@ -104,37 +106,37 @@
 														<Insets left="15.0" />
 													</GridPane.margin>
 												</Label>
-												<TextField fx:id="nameTextField" GridPane.columnIndex="1">
+												<TextField fx:id="nameTextField" editable="false" GridPane.columnIndex="1">
 													<GridPane.margin>
 														<Insets left="15.0" right="15.0" />
 													</GridPane.margin>
 												</TextField>
-												<TextField fx:id="lastNameTextField" GridPane.columnIndex="1" GridPane.rowIndex="1">
+												<TextField fx:id="lastNameTextField" editable="false" GridPane.columnIndex="1" GridPane.rowIndex="1">
 													<GridPane.margin>
 														<Insets left="15.0" right="15.0" />
 													</GridPane.margin>
 												</TextField>
-												<TextField fx:id="ageTextField" GridPane.columnIndex="1" GridPane.rowIndex="3">
+												<TextField fx:id="ageTextField" editable="false" GridPane.columnIndex="1" GridPane.rowIndex="3">
 													<GridPane.margin>
 														<Insets left="15.0" right="15.0" />
 													</GridPane.margin>
 												</TextField>
-												<TextField fx:id="bodyMassTextField" GridPane.columnIndex="1" GridPane.rowIndex="4">
+												<TextField fx:id="bodyMassTextField" editable="false" GridPane.columnIndex="1" GridPane.rowIndex="4">
 													<GridPane.margin>
 														<Insets left="15.0" right="15.0" />
 													</GridPane.margin>
 												</TextField>
-												<TextField fx:id="higthTextField" GridPane.columnIndex="1" GridPane.rowIndex="5">
+												<TextField fx:id="higthTextField" editable="false" GridPane.columnIndex="1" GridPane.rowIndex="5">
 													<GridPane.margin>
 														<Insets left="15.0" right="15.0" />
 													</GridPane.margin>
 												</TextField>
-												<TextField fx:id="waistTextField" GridPane.columnIndex="1" GridPane.rowIndex="6">
+												<TextField fx:id="waistTextField" editable="false" GridPane.columnIndex="1" GridPane.rowIndex="6">
 													<GridPane.margin>
 														<Insets left="15.0" right="15.0" />
 													</GridPane.margin>
 												</TextField>
-												<TextField fx:id="hipsTextField" GridPane.columnIndex="1" GridPane.rowIndex="7">
+												<TextField fx:id="hipsTextField" editable="false" GridPane.columnIndex="1" GridPane.rowIndex="7">
 													<GridPane.margin>
 														<Insets left="15.0" right="15.0" />
 													</GridPane.margin>
@@ -146,12 +148,15 @@
 												</Label>
 												<HBox alignment="CENTER_LEFT" GridPane.columnIndex="1" GridPane.rowIndex="2">
 													<children>
-														<RadioButton fx:id="maleRadioButton" mnemonicParsing="false" text="Mężczyzna" GridPane.columnIndex="1" GridPane.rowIndex="2">
+														<RadioButton fx:id="maleRadioButton" disable="true" mnemonicParsing="false" text="Mężczyzna" GridPane.columnIndex="1" GridPane.rowIndex="2">
 															<HBox.margin>
 																<Insets left="15.0" />
 															</HBox.margin>
+															<toggleGroup>
+																<ToggleGroup fx:id="genderToggleGroup" />
+															</toggleGroup>
 														</RadioButton>
-														<RadioButton fx:id="femaleRadioButton" mnemonicParsing="false" selected="true" text="Kobieta" GridPane.columnIndex="1" GridPane.rowIndex="2">
+														<RadioButton fx:id="femaleRadioButton" disable="true" mnemonicParsing="false" selected="true" text="Kobieta" toggleGroup="$genderToggleGroup" GridPane.columnIndex="1" GridPane.rowIndex="2">
 															<GridPane.margin>
 																<Insets left="15.0" />
 															</GridPane.margin>

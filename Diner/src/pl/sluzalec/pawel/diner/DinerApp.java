@@ -25,8 +25,7 @@ public class DinerApp extends Application {
 	public DinerApp() {
 
 		// Place to add new sample project.
-		projectList.add(new Project());
-        projectList.add(new Project());
+		
 	}
 
 	@Override
@@ -59,7 +58,7 @@ public class DinerApp extends Application {
 		}
 	}
 
-	public void showAddDialog() {
+	public boolean showAddDialog(Project project) {
 		try {
 			// Load the fxml file and create a new stage for the popup dialog.
 			FXMLLoader loader = new FXMLLoader();
@@ -78,13 +77,14 @@ public class DinerApp extends Application {
 			// Set the person into the controller.
 			AddProjectDialogController controller = loader.getController();
 			controller.setDialogStage(dialogStage);
-			// controller.setProject(project);
+			controller.setProject(project);
 
 			// Show the dialog and wait until the user closes it
 			dialogStage.showAndWait();
-
+			return controller.isOkClicked();
 		} catch (IOException e) {
 			e.printStackTrace();
+			return false;
 		}
 	}
 

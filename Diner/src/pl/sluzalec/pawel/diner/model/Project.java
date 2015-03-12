@@ -28,12 +28,12 @@ public class Project {
 		// Dummy data.
 		this.patientName = new SimpleStringProperty("Jan");
 		this.lastName = new SimpleStringProperty("Kowalski");
-		this.gender = new SimpleBooleanProperty(true);
 		this.age = new SimpleStringProperty("25");
 		this.higth = new SimpleDoubleProperty(175);
 		this.bodyMass = new SimpleDoubleProperty(70);
 		this.waist = new SimpleDoubleProperty(50);
 		this.hips = new SimpleDoubleProperty(50);
+		this.gender = new SimpleBooleanProperty(false);
 	}
 
 	public StringProperty getProjectName() {
@@ -41,7 +41,7 @@ public class Project {
 	}
 
 	public void setProjectName(String projectName) {
-		this.projectName.set(projectName);;
+		this.projectName.set(projectName);
 	}
 
 	public String getPatientName() {

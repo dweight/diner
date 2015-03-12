@@ -6,13 +6,10 @@ import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
-import pl.sluzalec.pawel.diner.model.Project;
 
 public class AddProjectDialogController {
 
 	private Stage dialogStage;
-	
-	
 
 	@FXML
 	private Button cancelButton;
@@ -42,21 +39,20 @@ public class AddProjectDialogController {
 	}
 
 	private boolean isInputValid() {
-		String errorMessage = "";
-		
+
 		if (projectNameTextField.getText() == null
 				|| projectNameTextField.getText().length() == 0) {
-			errorMessage += "Niepoprawna nazwa projektu!\n";
-		}
-			if (errorMessage.length() == 0) {
-				return true;
-		} else {
+			//TODO Add project name check.
 			Alert alert = new Alert(AlertType.ERROR);
-			alert.setTitle("Niewłaściwe dane");
-			alert.setContentText(errorMessage);
-			alert.setHeaderText("Proszę poprawić nieprawdłowe pola");
+			alert.setTitle("Nieprawidłowa nazwa");
+			alert.setContentText("Nazwa projektu jest nieprawidłowa!");
+			alert.setHeaderText(null);
 			alert.show();
+
 			return false;
+
+		} else {
+			return true;
 		}
 	}
 }

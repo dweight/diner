@@ -24,10 +24,9 @@ public class DinerApp extends Application {
 
 	public DinerApp() {
 
-		addToProjectList(new Project(null, null, "Nowy projekt"));
-		addToProjectList(new Project());
-		System.out.println("Projetk dodany w DinerApp");
-		System.out.println(getProjectList());
+		// Place to add new sample project.
+		projectList.add(new Project());
+        projectList.add(new Project());
 	}
 
 	@Override
@@ -86,18 +85,13 @@ public class DinerApp extends Application {
 
 		} catch (IOException e) {
 			e.printStackTrace();
-
 		}
 	}
 
 	public ObservableList<Project> getProjectList() {
 		return projectList;
 	}
-
-	public void addToProjectList(Project project) {
-		projectList.add(project);
-	}
-
+	
 	public Stage getPrimaryStage() {
 		return primaryStage;
 	}

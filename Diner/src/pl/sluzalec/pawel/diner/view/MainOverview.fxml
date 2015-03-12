@@ -35,7 +35,14 @@
 								<Button fx:id="deletePatientButton" layoutX="70.0" layoutY="12.0" mnemonicParsing="false" text="Usuń" />
 							</items>
 						</ToolBar>
-						<TreeView fx:id="patientTreeView" editable="true" fixedCellSize="24.0" layoutX="17.0" layoutY="34.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="40.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+						<TableView fx:id="projectTableView" layoutX="17.0" layoutY="38.0" prefHeight="569.0" prefWidth="234.0" AnchorPane.bottomAnchor="40.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+							<columns>
+								<TableColumn fx:id="projectTableColumn" prefWidth="75.0" />
+							</columns>
+							<columnResizePolicy>
+								<TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+							</columnResizePolicy>
+						</TableView>
 
 
 					</children>
@@ -117,12 +124,12 @@
 														<Insets left="15.0" right="15.0" />
 													</GridPane.margin>
 												</TextField>
-												<TextField fx:id="haightTextField" GridPane.columnIndex="1" GridPane.rowIndex="5">
+												<TextField fx:id="higthTextField" GridPane.columnIndex="1" GridPane.rowIndex="5">
 													<GridPane.margin>
 														<Insets left="15.0" right="15.0" />
 													</GridPane.margin>
 												</TextField>
-												<TextField fx:id="weistTextField" GridPane.columnIndex="1" GridPane.rowIndex="6">
+												<TextField fx:id="waistTextField" GridPane.columnIndex="1" GridPane.rowIndex="6">
 													<GridPane.margin>
 														<Insets left="15.0" right="15.0" />
 													</GridPane.margin>

@@ -1,7 +1,7 @@
 package pl.sluzalec.pawel.diner.view;
 
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
+import com.sun.webkit.ContextMenu.ShowContext;
+
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
@@ -9,8 +9,9 @@ import javafx.scene.control.Button;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.Tab;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
-import javafx.scene.control.TreeItem;
 import javafx.scene.control.TreeView;
 import javafx.stage.Stage;
 import pl.sluzalec.pawel.diner.DinerApp;
@@ -25,10 +26,7 @@ public class MainOverviewController {
 	private MenuItem saveAsMenuItem;
 
 	@FXML
-	private TreeView<String> patientTreeView;
-
-	@FXML
-	private TextField haightTextField;
+	private TextField hightTextField;
 
 	@FXML
 	private Button searchButton;
@@ -55,7 +53,7 @@ public class MainOverviewController {
 	private Button addPatientButton;
 
 	@FXML
-	private TextField weistTextField;
+	private TextField waistTextField;
 
 	@FXML
 	private TextField ageTextField;
@@ -87,38 +85,68 @@ public class MainOverviewController {
 	@FXML
 	private MenuItem loadMenuItem;
 
+	@FXML
+	private TableView<Project> projectTableView;
+
+	@FXML
+	private TableColumn<Project, String> projectTableColumn;
+
 	// Reference to DinerApp.
 	private DinerApp dinerApp;
 
-	// Reference to active project.
-	private Project project;
-
-	// Root TreeList Item.
-	private TreeItem<String> rootItem = new TreeItem<>();
-
-	// List of items.
-	private ObservableList<TreeItem<String>> projectItemsList = FXCollections
-			.observableArrayList();
-
-	
-	
-
 	public MainOverviewController() {
-		
+
+	}
+
+	public void setProjectData(Project project) {
+		if (project != null) {
+			this.nameTextField.setText(project.getPatientName());
+			this.lastNameTextField.setText(project.getLastName());
+			this.ageTextField.setText(project.getAge());
+			this.bodyMassTextField.setText(project.getBodyMass().toString());
+			this.hightTextField.setText(project.getHigth().toString());
+			this.hipsTextField.setText(project.getHigth().toString());
+			this.waistTextField.setText(project.getWaist().toString());
+		} else {
+			this.nameTextField.setText("");
+			this.lastNameTextField.setText("");
+			this.ageTextField.setText("");
+			this.bodyMassTextField.setText("");
+			this.hightTextField.setText("");
+			this.hipsTextField.setText("");
+			this.waistTextField.setText("");
+		}
+	}
+
+	public void setDinerApp(DinerApp dinerApp) {
+		this.dinerApp = dinerApp;
+
+		// Add observable list data to the table
+		projectTableView.setItems(dinerApp.getProjectList());
 
 	}
 
 	@FXML
 	private void initialize() {
+		// Initialize project column with project names.
+		projectTableColumn.setCellValueFactory(cellData -> cellData.getValue()
+				.getProjectName());
 
-		//initTreeList();
+		// Clear person details.
+		setProjectData(null);
+
+		// Add listner.
+		projectTableView
+				.getSelectionModel()
+				.selectedItemProperty()
+				.addListener(
+						(observable, oldValue, newValue) -> setProjectData(newValue));
 
 	}
 
 	@FXML
 	private void handleAdd() {
 		dinerApp.showAddDialog();
-
 	}
 
 	@FXML
@@ -135,44 +163,6 @@ public class MainOverviewController {
 	private void handleClose() {
 		Stage stage = dinerApp.getPrimaryStage();
 		stage.close();
-	}
-
-	public void setDinerApp(DinerApp dinerApp) {
-		this.dinerApp = dinerApp;
-	}
-
-	public void initTreeList() {
-		ObservableList<Project> projectList = dinerApp.getProjectList();
-		for (Project project : projectList) {
-			projectItemsList.add(project.setItem());
-		}
-		System.out.println("Dodano projekty do listy");
-
-		rootItem.getChildren().addAll(projectItemsList);
-		rootItem.setExpanded(true);
-		patientTreeView.setRoot(rootItem);
-		patientTreeView.setShowRoot(false);
-
-		patientTreeView
-				.getSelectionModel()
-				.selectedItemProperty()
-				.addListener(
-						(observable, oldValue, newValue) -> showPatientData(newValue));
-
-		System.out.println("Aktywowano TreeListView");
-	}
-
-	private void showPatientData(TreeItem<String> newValue) {
-		if (newValue != null) {
-			if (newValue.getValue() == "Dane Pacjenta") {
-				System.out.println("Zaznaczono dane pacjenta!");
-				System.out.println(newValue.getParent());
-
-			}
-
-		} else {
-
-		}
 	}
 
 }

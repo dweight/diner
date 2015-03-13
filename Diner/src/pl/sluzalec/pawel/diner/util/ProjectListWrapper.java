@@ -18,7 +18,7 @@ public class ProjectListWrapper {
 		return projects;
 	}
 	
-	public void setProjects(List<Project> persons) {
+	public void setProjects(List<Project> projects) {
 		this.projects = projects;
 	}
 }

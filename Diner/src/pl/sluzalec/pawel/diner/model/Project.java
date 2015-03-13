@@ -6,6 +6,8 @@ import javafx.beans.property.SimpleBooleanProperty;
 import javafx.beans.property.SimpleDoubleProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 
 public class Project {
 
@@ -18,6 +20,18 @@ public class Project {
 	private DoubleProperty bodyMass;
 	private DoubleProperty waist;
 	private DoubleProperty hips;
+	private ObservableList<DietItem> breakfastList = FXCollections
+			.observableArrayList();
+	private ObservableList<DietItem> lunchList = FXCollections
+			.observableArrayList();
+	private ObservableList<DietItem> dinnerList = FXCollections
+			.observableArrayList();
+	private ObservableList<DietItem> teeTimeList = FXCollections
+			.observableArrayList();
+	private ObservableList<DietItem> supperList = FXCollections
+			.observableArrayList();
+	private ObservableList<DietItem> betweenMealsList = FXCollections
+			.observableArrayList();
 
 	public Project() {
 		this("Nowy Projekt");
@@ -34,6 +48,60 @@ public class Project {
 		this.waist = new SimpleDoubleProperty(50);
 		this.hips = new SimpleDoubleProperty(50);
 		this.gender = new SimpleBooleanProperty(false);
+		this.breakfastList.add(new DietItem());
+		this.teeTimeList.add(new DietItem());
+		this.lunchList.add(new DietItem());
+		this.dinnerList.add(new DietItem());
+		this.supperList.add(new DietItem());
+		this.betweenMealsList.add(new DietItem());
+	}
+
+	public ObservableList<DietItem> getBreakfastList() {
+		return breakfastList;
+	}
+
+	public ObservableList<DietItem> getLunchList() {
+		return lunchList;
+	}
+
+	public ObservableList<DietItem> getDinnerList() {
+		return dinnerList;
+	}
+
+	public ObservableList<DietItem> getTeeTimeList() {
+		return teeTimeList;
+	}
+
+	public ObservableList<DietItem> getSupperList() {
+		return supperList;
+	}
+
+	public ObservableList<DietItem> getBetweenMealsList() {
+		return betweenMealsList;
+	}
+
+	public void addLunchList(DietItem item) {
+		lunchList.add(item);
+	}
+
+	public void addDinnerList(DietItem item) {
+		dinnerList.add(item);
+	}
+
+	public void addBreakfastList(DietItem item) {
+		breakfastList.add(item);
+	}
+
+	public void addTeeTimeList(DietItem item) {
+		teeTimeList.add(item);
+	}
+
+	public void addSupperList(DietItem item) {
+		supperList.add(item);
+	}
+
+	public void addBetweenMealsList(DietItem item) {
+		betweenMealsList.add(item);
 	}
 
 	public StringProperty getProjectName() {

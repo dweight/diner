@@ -8,52 +8,83 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.40" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pl.sluzalec.pawel.diner.view.MainOverviewController">
+<AnchorPane prefHeight="768.0" prefWidth="1024.0"
+	xmlns="http://javafx.com/javafx/8.0.40" xmlns:fx="http://javafx.com/fxml/1"
+	fx:controller="pl.sluzalec.pawel.diner.view.MainOverviewController">
 	<children>
-		<MenuBar layoutX="14.0" layoutY="14.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+		<MenuBar layoutX="14.0" layoutY="14.0" AnchorPane.leftAnchor="0.0"
+			AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
 			<menus>
 				<Menu mnemonicParsing="false" text="Plik">
 					<items>
-						<MenuItem fx:id="saveMenuItem" mnemonicParsing="false" onAction="#handleSave" text="Zapisz">
-                     <accelerator>
-                        <KeyCodeCombination alt="UP" code="S" control="ANY" meta="UP" shift="UP" shortcut="UP" />
-                     </accelerator></MenuItem>
-						<MenuItem fx:id="saveAsMenuItem" mnemonicParsing="false" onAction="#handleSaveAs" text="Zapisz jako">
-                     <accelerator>
-                        <KeyCodeCombination alt="UP" code="S" control="ANY" meta="UP" shift="ANY" shortcut="UP" />
-                     </accelerator></MenuItem>
-						<MenuItem fx:id="loadMenuItem" mnemonicParsing="false" onAction="#handleOpen" text="Wczytaj">
-                     <accelerator>
-                        <KeyCodeCombination alt="UP" code="O" control="ANY" meta="UP" shift="UP" shortcut="UP" />
-                     </accelerator></MenuItem>
-						<MenuItem fx:id="closeMenuItem" mnemonicParsing="false" onAction="#handleClose" text="Zamknij">
-                     <accelerator>
-                        <KeyCodeCombination alt="UP" code="Q" control="ANY" meta="UP" shift="UP" shortcut="UP" />
-                     </accelerator></MenuItem>
+						<MenuItem fx:id="saveMenuItem" mnemonicParsing="false"
+							onAction="#handleSave" text="Zapisz">
+							<accelerator>
+								<KeyCodeCombination alt="UP" code="S"
+									control="DOWN" meta="UP" shift="UP" shortcut="UP" />
+							</accelerator>
+						</MenuItem>
+						<MenuItem fx:id="saveAsMenuItem" mnemonicParsing="false"
+							onAction="#handleSaveAs" text="Zapisz jako">
+							<accelerator>
+								<KeyCodeCombination alt="UP" code="S"
+									control="DOWN" meta="UP" shift="DOWN" shortcut="UP" />
+							</accelerator>
+						</MenuItem>
+						<MenuItem fx:id="loadMenuItem" mnemonicParsing="false"
+							onAction="#handleOpen" text="Wczytaj">
+							<accelerator>
+								<KeyCodeCombination alt="UP" code="O"
+									control="DOWN" meta="UP" shift="UP" shortcut="UP" />
+							</accelerator>
+						</MenuItem>
+						<MenuItem fx:id="closeMenuItem" mnemonicParsing="false"
+							onAction="#handleClose" text="Zamknij">
+							<accelerator>
+								<KeyCodeCombination alt="UP" code="Q"
+									control="DOWN" meta="UP" shift="UP" shortcut="UP" />
+							</accelerator>
+						</MenuItem>
 					</items>
 				</Menu>
 				<Menu mnemonicParsing="false" text="Pomoc">
 					<items>
-						<MenuItem fx:id="aboutMenuItem" mnemonicParsing="false" onAction="#handleAbout" text="O Programie">
-                     <accelerator>
-                        <KeyCodeCombination alt="UP" code="H" control="ANY" meta="UP" shift="UP" shortcut="UP" />
-                     </accelerator></MenuItem>
+						<MenuItem fx:id="aboutMenuItem" mnemonicParsing="false"
+							onAction="#handleAbout" text="O Programie">
+							<accelerator>
+								<KeyCodeCombination alt="UP" code="H"
+									control="DOWN" meta="UP" shift="UP" shortcut="UP" />
+							</accelerator>
+						</MenuItem>
 					</items>
 				</Menu>
 			</menus>
 		</MenuBar>
-		<SplitPane dividerPositions="0.29797979797979796" layoutX="107.0" layoutY="186.0" prefHeight="160.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="29.0">
+		<SplitPane dividerPositions="0.26" layoutX="107.0" layoutY="186.0"
+			prefHeight="160.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0"
+			AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0"
+			AnchorPane.topAnchor="29.0">
 			<items>
-				<AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+				<AnchorPane maxHeight="1.7976931348623157E308" maxWidth="-Infinity"
+					minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="210.0">
 					<children>
-						<ToolBar layoutX="17.0" layoutY="515.0" prefHeight="40.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+						<ToolBar layoutX="17.0" layoutY="515.0" prefHeight="40.0"
+							prefWidth="200.0" AnchorPane.bottomAnchor="0.0"
+							AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
 							<items>
-								<Button fx:id="addPatientButton" defaultButton="true" mnemonicParsing="false" onAction="#handleAdd" prefWidth="60.0" text="Dodaj" />
-                        <Button fx:id="editButton" mnemonicParsing="false" onAction="#handleEdit" prefWidth="60.0" text="Edytuj" />
-								<Button fx:id="deletePatientButton" layoutX="70.0" layoutY="12.0" mnemonicParsing="false" onAction="#handleDelete" prefWidth="60.0" text="Usuń" />
+								<Button fx:id="addPatientButton" mnemonicParsing="false"
+									onAction="#handleAdd" prefWidth="60.0" text="Dodaj" />
+								<Button fx:id="editButton" mnemonicParsing="false"
+									onAction="#handleEdit" prefWidth="60.0" text="Edytuj" />
+								<Button fx:id="deletePatientButton" layoutX="70.0"
+									layoutY="12.0" mnemonicParsing="false" onAction="#handleDelete"
+									prefWidth="60.0" text="Usuń" />
 							</items>
 						</ToolBar>
-						<TableView fx:id="projectTableView" layoutX="17.0" layoutY="38.0" prefHeight="569.0" prefWidth="234.0" AnchorPane.bottomAnchor="40.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+						<TableView fx:id="projectTableView" layoutX="17.0"
+							layoutY="38.0" prefHeight="569.0" prefWidth="200.0"
+							AnchorPane.bottomAnchor="40.0" AnchorPane.leftAnchor="0.0"
+							AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
 							<columns>
 								<TableColumn fx:id="projectTableColumn" prefWidth="75.0" />
 							</columns>
@@ -65,26 +96,40 @@
 
 					</children>
 				</AnchorPane>
-				<AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+				<AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0"
+					prefWidth="100.0">
 					<children>
-						<TabPane layoutX="127.0" layoutY="96.0" prefHeight="569.0" prefWidth="556.0" tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+						<TabPane layoutX="127.0" layoutY="96.0" prefHeight="569.0"
+							prefWidth="556.0" tabClosingPolicy="UNAVAILABLE"
+							AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0"
+							AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
 							<tabs>
-								<Tab fx:id="patientDataTab" text="Dane Pacjenta">
+								<Tab fx:id="patientDataTab" closable="false" text="Dane Pacjenta">
 									<content>
 										<GridPane>
 											<columnConstraints>
-												<ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-												<ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+												<ColumnConstraints hgrow="SOMETIMES"
+													minWidth="10.0" prefWidth="100.0" />
+												<ColumnConstraints hgrow="SOMETIMES"
+													minWidth="10.0" prefWidth="100.0" />
 											</columnConstraints>
 											<rowConstraints>
-												<RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-												<RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-												<RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-												<RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-												<RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-												<RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-												<RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-												<RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+												<RowConstraints minHeight="10.0" prefHeight="30.0"
+													vgrow="SOMETIMES" />
+												<RowConstraints minHeight="10.0" prefHeight="30.0"
+													vgrow="SOMETIMES" />
+												<RowConstraints minHeight="10.0" prefHeight="30.0"
+													vgrow="SOMETIMES" />
+												<RowConstraints minHeight="10.0" prefHeight="30.0"
+													vgrow="SOMETIMES" />
+												<RowConstraints minHeight="10.0" prefHeight="30.0"
+													vgrow="SOMETIMES" />
+												<RowConstraints minHeight="10.0" prefHeight="30.0"
+													vgrow="SOMETIMES" />
+												<RowConstraints minHeight="10.0" prefHeight="30.0"
+													vgrow="SOMETIMES" />
+												<RowConstraints minHeight="10.0" prefHeight="30.0"
+													vgrow="SOMETIMES" />
 											</rowConstraints>
 											<children>
 												<Label text="Imię:">
@@ -122,37 +167,44 @@
 														<Insets left="15.0" />
 													</GridPane.margin>
 												</Label>
-												<TextField fx:id="nameTextField" editable="false" GridPane.columnIndex="1">
+												<TextField fx:id="nameTextField" editable="false"
+													GridPane.columnIndex="1">
 													<GridPane.margin>
 														<Insets left="15.0" right="15.0" />
 													</GridPane.margin>
 												</TextField>
-												<TextField fx:id="lastNameTextField" editable="false" GridPane.columnIndex="1" GridPane.rowIndex="1">
+												<TextField fx:id="lastNameTextField" editable="false"
+													GridPane.columnIndex="1" GridPane.rowIndex="1">
 													<GridPane.margin>
 														<Insets left="15.0" right="15.0" />
 													</GridPane.margin>
 												</TextField>
-												<TextField fx:id="ageTextField" editable="false" GridPane.columnIndex="1" GridPane.rowIndex="3">
+												<TextField fx:id="ageTextField" editable="false"
+													GridPane.columnIndex="1" GridPane.rowIndex="3">
 													<GridPane.margin>
 														<Insets left="15.0" right="15.0" />
 													</GridPane.margin>
 												</TextField>
-												<TextField fx:id="bodyMassTextField" editable="false" GridPane.columnIndex="1" GridPane.rowIndex="4">
+												<TextField fx:id="bodyMassTextField" editable="false"
+													GridPane.columnIndex="1" GridPane.rowIndex="4">
 													<GridPane.margin>
 														<Insets left="15.0" right="15.0" />
 													</GridPane.margin>
 												</TextField>
-												<TextField fx:id="higthTextField" editable="false" GridPane.columnIndex="1" GridPane.rowIndex="5">
+												<TextField fx:id="higthTextField" editable="false"
+													GridPane.columnIndex="1" GridPane.rowIndex="5">
 													<GridPane.margin>
 														<Insets left="15.0" right="15.0" />
 													</GridPane.margin>
 												</TextField>
-												<TextField fx:id="waistTextField" editable="false" GridPane.columnIndex="1" GridPane.rowIndex="6">
+												<TextField fx:id="waistTextField" editable="false"
+													GridPane.columnIndex="1" GridPane.rowIndex="6">
 													<GridPane.margin>
 														<Insets left="15.0" right="15.0" />
 													</GridPane.margin>
 												</TextField>
-												<TextField fx:id="hipsTextField" editable="false" GridPane.columnIndex="1" GridPane.rowIndex="7">
+												<TextField fx:id="hipsTextField" editable="false"
+													GridPane.columnIndex="1" GridPane.rowIndex="7">
 													<GridPane.margin>
 														<Insets left="15.0" right="15.0" />
 													</GridPane.margin>
@@ -162,9 +214,12 @@
 														<Insets left="15.0" />
 													</GridPane.margin>
 												</Label>
-												<HBox alignment="CENTER_LEFT" GridPane.columnIndex="1" GridPane.rowIndex="2">
+												<HBox alignment="CENTER_LEFT" GridPane.columnIndex="1"
+													GridPane.rowIndex="2">
 													<children>
-														<RadioButton fx:id="maleRadioButton" disable="true" mnemonicParsing="false" text="Mężczyzna" GridPane.columnIndex="1" GridPane.rowIndex="2">
+														<RadioButton fx:id="maleRadioButton" disable="true"
+															mnemonicParsing="false" text="Mężczyzna"
+															GridPane.columnIndex="1" GridPane.rowIndex="2">
 															<HBox.margin>
 																<Insets left="15.0" />
 															</HBox.margin>
@@ -172,7 +227,10 @@
 																<ToggleGroup fx:id="genderToggleGroup" />
 															</toggleGroup>
 														</RadioButton>
-														<RadioButton fx:id="femaleRadioButton" disable="true" mnemonicParsing="false" selected="true" text="Kobieta" toggleGroup="$genderToggleGroup" GridPane.columnIndex="1" GridPane.rowIndex="2">
+														<RadioButton fx:id="femaleRadioButton"
+															disable="true" mnemonicParsing="false" selected="true"
+															text="Kobieta" toggleGroup="$genderToggleGroup"
+															GridPane.columnIndex="1" GridPane.rowIndex="2">
 															<GridPane.margin>
 																<Insets left="15.0" />
 															</GridPane.margin>
@@ -186,24 +244,174 @@
 										</GridPane>
 									</content>
 								</Tab>
-								<Tab fx:id="editorTab" text="Edytor Diety">
+								<Tab fx:id="editorTab" closable="false" text="Edytor Diety">
 									<content>
-										<AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+										<AnchorPane minHeight="0.0" minWidth="0.0"
+											prefHeight="180.0" prefWidth="200.0">
 											<children>
-												<ToolBar layoutX="14.0" layoutY="14.0" nodeOrientation="RIGHT_TO_LEFT" prefHeight="40.0" prefWidth="200.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+												<ToolBar layoutX="14.0" layoutY="14.0"
+													nodeOrientation="RIGHT_TO_LEFT" prefHeight="40.0"
+													prefWidth="200.0" AnchorPane.leftAnchor="0.0"
+													AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
 													<items>
-														<Button fx:id="searchButton" layoutX="251.0" layoutY="12.0" mnemonicParsing="false" text="Szukaj" />
-														<TextField fx:id="searchTextield" alignment="CENTER_RIGHT" promptText="Szukaj w Bazie" />
+														<Button fx:id="addProductButton" mnemonicParsing="false"
+															text="Dodaj Produkt" />
 													</items>
 												</ToolBar>
-												<TreeView fx:id="editorTreeView" layoutX="111.0" layoutY="139.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="40.0" />
+												<TabPane layoutX="73.0" layoutY="82.0" prefHeight="536.0"
+													prefWidth="587.0" side="RIGHT" tabClosingPolicy="UNAVAILABLE"
+													AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0"
+													AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="40.0">
+													<tabs>
+														<Tab text="Śniadanie">
+															<content>
+																<AnchorPane minHeight="0.0" minWidth="0.0"
+																	prefHeight="180.0" prefWidth="200.0">
+																	<children>
+																		<TableView fx:id="breakfastTable" layoutX="43.0"
+																			layoutY="261.0" prefHeight="463.0" prefWidth="587.0"
+																			AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0"
+																			AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+																			<columns>
+																				<TableColumn fx:id="bc1" prefWidth="75.0"
+																					text="Produkt" />
+																				<TableColumn fx:id="bc2" prefWidth="75.0"
+																					text="Ilość" />
+																			</columns>
+																			<columnResizePolicy>
+																				<TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+																			</columnResizePolicy>
+																		</TableView>
+																	</children>
+																</AnchorPane>
+															</content>
+														</Tab>
+														<Tab text="Drugie Śniadanie">
+															<content>
+																<AnchorPane minHeight="0.0" minWidth="0.0"
+																	prefHeight="180.0" prefWidth="200.0">
+																	<children>
+																		<TableView fx:id="lunchTable" layoutX="194.0"
+																			layoutY="300.0" prefHeight="463.0" prefWidth="587.0"
+																			AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0"
+																			AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+																			<columns>
+																				<TableColumn fx:id="lc1" prefWidth="75.0"
+																					text="Peodukt" />
+																				<TableColumn fx:id="lc2" prefWidth="75.0"
+																					text="Ilość" />
+																			</columns>
+																			<columnResizePolicy>
+																				<TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+																			</columnResizePolicy>
+																		</TableView>
+																	</children>
+																</AnchorPane>
+															</content>
+														</Tab>
+														<Tab text="Obiad">
+															<content>
+																<AnchorPane minHeight="0.0" minWidth="0.0"
+																	prefHeight="180.0" prefWidth="200.0">
+																	<children>
+																		<TableView fx:id="dinnerTable" layoutX="194.0"
+																			layoutY="309.0" prefHeight="463.0" prefWidth="587.0"
+																			AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0"
+																			AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+																			<columns>
+																				<TableColumn fx:id="dc1" prefWidth="75.0"
+																					text="Produkt" />
+																				<TableColumn fx:id="dc2" prefWidth="75.0"
+																					text="Ilość" />
+																			</columns>
+																			<columnResizePolicy>
+																				<TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+																			</columnResizePolicy>
+																		</TableView>
+																	</children>
+																</AnchorPane>
+															</content>
+														</Tab>
+														<Tab text="Podwieczorek">
+															<content>
+																<AnchorPane minHeight="0.0" minWidth="0.0"
+																	prefHeight="180.0" prefWidth="200.0">
+																	<children>
+																		<TableView fx:id="teaTimeTable" prefHeight="463.0"
+																			prefWidth="587.0" AnchorPane.bottomAnchor="0.0"
+																			AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0"
+																			AnchorPane.topAnchor="0.0">
+																			<columns>
+																				<TableColumn fx:id="ttc1" prefWidth="75.0"
+																					text="Produkt" />
+																				<TableColumn fx:id="ttc2" prefWidth="75.0"
+																					text="Ilość" />
+																			</columns>
+																			<columnResizePolicy>
+																				<TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+																			</columnResizePolicy>
+																		</TableView>
+																	</children>
+																</AnchorPane>
+															</content>
+														</Tab>
+														<Tab text="Kolacja">
+															<content>
+																<AnchorPane minHeight="0.0" minWidth="0.0"
+																	prefHeight="180.0" prefWidth="200.0">
+																	<children>
+																		<TableView fx:id="supperTable" layoutX="337.0"
+																			layoutY="315.0" prefHeight="463.0" prefWidth="587.0"
+																			AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0"
+																			AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+																			<columns>
+																				<TableColumn fx:id="sc1" prefWidth="75.0"
+																					text="Produkt" />
+																				<TableColumn fx:id="sc2" prefWidth="75.0"
+																					text="Ilość" />
+																			</columns>
+																			<columnResizePolicy>
+																				<TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+																			</columnResizePolicy>
+																		</TableView>
+																	</children>
+																</AnchorPane>
+															</content>
+														</Tab>
+														<Tab text="Między Posiłkami">
+															<content>
+																<AnchorPane minHeight="0.0" minWidth="0.0"
+																	prefHeight="180.0" prefWidth="200.0">
+																	<children>
+																		<TableView fx:id="betweenMealsTable"
+																			layoutX="385.0" layoutY="283.0" prefHeight="463.0"
+																			prefWidth="587.0" AnchorPane.bottomAnchor="0.0"
+																			AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0"
+																			AnchorPane.topAnchor="0.0">
+																			<columns>
+																				<TableColumn fx:id="bmc1" prefWidth="75.0"
+																					text="Produkt" />
+																				<TableColumn fx:id="bmc2" prefWidth="75.0"
+																					text="Ilość" />
+																			</columns>
+																			<columnResizePolicy>
+																				<TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+																			</columnResizePolicy>
+																		</TableView>
+																	</children>
+																</AnchorPane>
+															</content>
+														</Tab>
+													</tabs>
+												</TabPane>
 											</children>
 										</AnchorPane>
 									</content>
 								</Tab>
-								<Tab fx:id="indexTab" text="Współczynniki i Wykresy">
+								<Tab fx:id="indexTab" closable="false" text="Współczynniki i Wykresy">
 									<content>
-										<AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+										<AnchorPane minHeight="0.0" minWidth="0.0"
+											prefHeight="180.0" prefWidth="200.0" />
 									</content>
 								</Tab>
 							</tabs>

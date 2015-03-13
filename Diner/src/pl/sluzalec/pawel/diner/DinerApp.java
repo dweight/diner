@@ -45,7 +45,7 @@ public class DinerApp extends Application {
 		this.primaryStage = primaryStage;
 		this.primaryStage.setTitle(APP_NAME);
 		this.primaryStage.getIcons()
-				.add(new Image("file:res/images/diner.png"));
+				.add(new Image("file:resources/images/diner_32x32.png"));
 		initMainOverview();
 	}
 

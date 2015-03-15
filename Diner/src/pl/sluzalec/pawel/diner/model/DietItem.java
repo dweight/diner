@@ -14,7 +14,7 @@ public class DietItem {
 	private DoubleProperty quantity;
 
 	public DietItem() {
-		this("Kasza", 150, 200);
+		this(" ", 0, 0);
 	}
 
 	public DietItem(String name, double kcal, double quantity) {
@@ -35,16 +35,16 @@ public class DietItem {
 		return kcal;
 	}
 
-	public void setKcal(DoubleProperty kcal) {
-		this.kcal = kcal;
+	public void setKcal(Double kcal) {
+		this.kcal.set(kcal);
 	}
 
 	public DoubleProperty getQuantity() {
 		return quantity;
 	}
 
-	public void setQuantity(DoubleProperty quantity) {
-		this.quantity = quantity;
+	public void setQuantity(Double quantity) {
+		this.quantity.set(quantity);
 	}
 
 }

@@ -1,9 +1,9 @@
 package pl.sluzalec.pawel.diner.view;
 
 import java.io.File;
+import java.util.ArrayList;
 import java.util.Optional;
 
-import javafx.beans.property.ReadOnlyStringWrapper;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
@@ -17,10 +17,6 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleGroup;
-import javafx.scene.control.TreeItem;
-import javafx.scene.control.TreeTableColumn;
-import javafx.scene.control.TreeTableColumn.CellDataFeatures;
-import javafx.scene.control.TreeTableView;
 import javafx.scene.text.Text;
 import javafx.stage.FileChooser;
 import javafx.stage.FileChooser.ExtensionFilter;
@@ -97,7 +93,13 @@ public class MainOverviewController {
 	private Tab editorTab;
 
 	@FXML
-	private Button addProductButton;
+	private Button editorAddtButton;
+
+	@FXML
+	private Button editorEditButton;
+
+	@FXML
+	private Button editorDeleteButton;
 
 	@FXML
 	private TableView<DietItem> breakfastTable;
@@ -159,7 +161,11 @@ public class MainOverviewController {
 	// Reference to DinerApp.
 	private DinerApp dinerApp;
 
+	// Active project.
+	private Project project;
+
 	boolean okClicked = false;
+	ArrayList<String> okAdd;
 
 	public MainOverviewController() {
 
@@ -167,7 +173,7 @@ public class MainOverviewController {
 
 	public void setProjectData(Project project) {
 		if (project != null) {
-			
+			this.project = project;
 			this.nameTextField.setText(project.getPatientName());
 			this.lastNameTextField.setText(project.getLastName());
 			this.ageTextField.setText(project.getAge());
@@ -180,12 +186,13 @@ public class MainOverviewController {
 			} else {
 				this.genderToggleGroup.selectToggle(maleRadioButton);
 			}
-			breakfastTable.setItems(project.getBreakfastList());
-			lunchTable.setItems(project.getLunchList());
-			dinnerTable.setItems(project.getDinnerList());
-			teaTimeTable.setItems(project.getTeeTimeList());
-			supperTable.setItems(project.getSupperList());
-			betweenMealsTable.setItems(project.getBetweenMealsList());
+			this.breakfastTable.setItems(project.getBreakfastList());
+			this.lunchTable.setItems(project.getLunchList());
+			this.dinnerTable.setItems(project.getDinnerList());
+			this.teaTimeTable.setItems(project.getTeeTimeList());
+			this.supperTable.setItems(project.getSupperList());
+			this.betweenMealsTable.setItems(project.getBetweenMealsList());
+
 		} else {
 
 			this.nameTextField.setText("");
@@ -215,7 +222,7 @@ public class MainOverviewController {
 				.getProjectName());
 		projectTableColumn.setText("Projekty");
 		projectTableView.setPlaceholder(new Text("Brak Projektów"));
-		
+
 		// Clear patient details.
 		setProjectData(null);
 
@@ -251,50 +258,95 @@ public class MainOverviewController {
 		bmc2.setCellValueFactory(cellData -> cellData.getValue().getQuantity()
 				.asString());
 
+		breakfastTable.setPlaceholder(new Text("Brak Produktów"));
+		lunchTable.setPlaceholder(new Text("Brak Produktów"));
+		dinnerTable.setPlaceholder(new Text("Brak Produktów"));
+		teaTimeTable.setPlaceholder(new Text("Brak Produktów"));
+		supperTable.setPlaceholder(new Text("Brak Produktów"));
+		betweenMealsTable.setPlaceholder(new Text("Brak Produktów"));
+
 		// Add listners to editor tabels.
 		breakfastTable
-		.getSelectionModel()
-		.selectedItemProperty()
-		.addListener(
-				(observable, oldValue, newValue) -> System.out.println(newValue));
-		
+				.getSelectionModel()
+				.selectedItemProperty()
+				.addListener(
+						(observable, oldValue, newValue) -> System.out
+								.println(newValue));
+
 		lunchTable
-		.getSelectionModel()
-		.selectedItemProperty()
-		.addListener(
-				(observable, oldValue, newValue) -> System.out.println(newValue));
-		
+				.getSelectionModel()
+				.selectedItemProperty()
+				.addListener(
+						(observable, oldValue, newValue) -> System.out
+								.println(newValue));
+
 		dinnerTable
-		.getSelectionModel()
-		.selectedItemProperty()
-		.addListener(
-				(observable, oldValue, newValue) -> System.out.println(newValue));
-		
+				.getSelectionModel()
+				.selectedItemProperty()
+				.addListener(
+						(observable, oldValue, newValue) -> System.out
+								.println(newValue));
+
 		teaTimeTable
-		.getSelectionModel()
-		.selectedItemProperty()
-		.addListener(
-				(observable, oldValue, newValue) -> System.out.println(newValue));
-		
+				.getSelectionModel()
+				.selectedItemProperty()
+				.addListener(
+						(observable, oldValue, newValue) -> System.out
+								.println(newValue));
+
 		supperTable
-		.getSelectionModel()
-		.selectedItemProperty()
-		.addListener(
-				(observable, oldValue, newValue) -> System.out.println(newValue));
-		
+				.getSelectionModel()
+				.selectedItemProperty()
+				.addListener(
+						(observable, oldValue, newValue) -> System.out
+								.println(newValue));
+
 		betweenMealsTable
-		.getSelectionModel()
-		.selectedItemProperty()
-		.addListener(
-				(observable, oldValue, newValue) -> System.out.println(newValue));
+				.getSelectionModel()
+				.selectedItemProperty()
+				.addListener(
+						(observable, oldValue, newValue) -> System.out
+								.println(newValue));
+	}
+
+	@FXML
+	private void handleAddProduct() {
+		DietItem tmpDietItem = new DietItem();
+
+		okAdd = dinerApp.showAddProductDialog(tmpDietItem);
+		if (okAdd != null) {
+			if (okAdd.contains("breakfast") == true) {
+				project.addBreakfastList(tmpDietItem);
+			}
+
+			if (okAdd.contains("lunch") == true) {
+				project.addLunchList(tmpDietItem);
+			}
+
+			if (okAdd.contains("dinner") == true) {
+				project.addDinnerList(tmpDietItem);
+			}
+			if (okAdd.contains("teetime") == true) {
+				project.addTeeTimeList(tmpDietItem);
+			}
+
+			if (okAdd.contains("supper") == true) {
+				project.addSupperList(tmpDietItem);
+			}
+
+			if (okAdd.contains("between") == true) {
+				project.addBetweenMealsList(tmpDietItem);
+			}
+		}
 	}
 
 	@FXML
 	private void handleAdd() {
 		Project tmpProject = new Project();
-		boolean okClicked = dinerApp.showAddDialog(tmpProject);
+		okClicked = dinerApp.showAddDialog(tmpProject);
 		if (okClicked == true) {
 			dinerApp.getProjectList().add(tmpProject);
+			projectTableView.getSelectionModel().selectFirst();
 		}
 
 	}
@@ -388,7 +440,7 @@ public class MainOverviewController {
 
 		Alert alert = new Alert(AlertType.INFORMATION);
 		alert.setTitle("Diner");
-		alert.setContentText("Diner - prosty edytor diet.\nAutor: Paweł Służalec\nStrona WWW: http://github.com/dweight/diner\n 2015");
+		alert.setContentText("Diner - prosty edytor diet.\nAutor: Paweł Służalec\nStrona www: http://github.com/dweight/diner\n");
 		alert.setHeaderText("O programie");
 		alert.showAndWait();
 	}

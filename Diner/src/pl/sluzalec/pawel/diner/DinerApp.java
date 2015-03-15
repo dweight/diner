@@ -2,6 +2,7 @@ package pl.sluzalec.pawel.diner;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.prefs.Preferences;
 
 import javafx.application.Application;
@@ -20,8 +21,10 @@ import javax.xml.bind.JAXBContext;
 import javax.xml.bind.Marshaller;
 import javax.xml.bind.Unmarshaller;
 
+import pl.sluzalec.pawel.diner.model.DietItem;
 import pl.sluzalec.pawel.diner.model.Project;
 import pl.sluzalec.pawel.diner.util.ProjectListWrapper;
+import pl.sluzalec.pawel.diner.view.AddProductDialogController;
 import pl.sluzalec.pawel.diner.view.AddProjectDialogController;
 import pl.sluzalec.pawel.diner.view.MainOverviewController;
 
@@ -30,6 +33,7 @@ public class DinerApp extends Application {
 	public final String APP_NAME = "Diner";
 	private Stage primaryStage;
 	private AnchorPane mainOverview;
+	boolean ok = false;
 	private ObservableList<Project> projectList = FXCollections
 			.observableArrayList();
 
@@ -44,8 +48,8 @@ public class DinerApp extends Application {
 	public void start(Stage primaryStage) {
 		this.primaryStage = primaryStage;
 		this.primaryStage.setTitle(APP_NAME);
-		this.primaryStage.getIcons()
-				.add(new Image("file:resources/images/diner_32x32.png"));
+		this.primaryStage.getIcons().add(
+				new Image("file:resources/diner_32x32.png"));
 		initMainOverview();
 	}
 
@@ -158,6 +162,38 @@ public class DinerApp extends Application {
 		}
 	}
 
+	public ArrayList<String> showAddProductDialog(DietItem item) {
+
+		try {
+
+			FXMLLoader loader = new FXMLLoader();
+			loader.setLocation(DinerApp.class
+					.getResource("view/AddProductDialog.fxml"));
+			AnchorPane page = (AnchorPane) loader.load();
+
+			Stage dialogStage = new Stage();
+			dialogStage.setTitle("Dodaj produkt");
+			dialogStage.initModality(Modality.WINDOW_MODAL);
+			dialogStage.initOwner(primaryStage);
+			Scene scene = new Scene(page);
+			dialogStage.setScene(scene);
+
+			// Set item into controller.
+			AddProductDialogController controller = loader.getController();
+			controller.setDialogStage(dialogStage);
+			controller.setDietItem(item);
+
+			dialogStage.showAndWait();
+			
+			return controller.getList();
+		} catch (IOException e) {
+			e.printStackTrace();
+			return null;
+		}
+
+	}
+
+	
 	public boolean showAddDialog(Project project) {
 		try {
 			// Load the fxml file and create a new stage for the popup dialog.
@@ -174,7 +210,7 @@ public class DinerApp extends Application {
 			Scene scene = new Scene(page);
 			dialogStage.setScene(scene);
 
-			// Set the person into the controller.
+			// Set person into the controller.
 			AddProjectDialogController controller = loader.getController();
 			controller.setDialogStage(dialogStage);
 			controller.setProject(project);

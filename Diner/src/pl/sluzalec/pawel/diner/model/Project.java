@@ -48,12 +48,12 @@ public class Project {
 		this.waist = new SimpleDoubleProperty(50);
 		this.hips = new SimpleDoubleProperty(50);
 		this.gender = new SimpleBooleanProperty(false);
-		this.breakfastList.add(new DietItem());
-		this.teeTimeList.add(new DietItem());
-		this.lunchList.add(new DietItem());
-		this.dinnerList.add(new DietItem());
-		this.supperList.add(new DietItem());
-		this.betweenMealsList.add(new DietItem());
+//		this.breakfastList.add(new DietItem());
+//		this.teeTimeList.add(new DietItem());
+//		this.lunchList.add(new DietItem());
+//		this.dinnerList.add(new DietItem());
+//		this.supperList.add(new DietItem());
+//		this.betweenMealsList.add(new DietItem());
 	}
 
 	public ObservableList<DietItem> getBreakfastList() {

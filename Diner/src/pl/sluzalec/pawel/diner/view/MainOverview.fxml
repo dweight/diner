@@ -254,8 +254,12 @@
 													prefWidth="200.0" AnchorPane.leftAnchor="0.0"
 													AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
 													<items>
-														<Button fx:id="addProductButton" mnemonicParsing="false"
-															text="Dodaj Produkt" />
+														<Button fx:id="editorDeleteButton" mnemonicParsing="false"
+															text="Usuń" />
+														<Button fx:id="editorEditButton" mnemonicParsing="false"
+															text="Edytuj" />
+														<Button fx:id="editorAddtButton" mnemonicParsing="false"
+															onAction="#handleAddProduct" text="Dodaj" />
 													</items>
 												</ToolBar>
 												<TabPane layoutX="73.0" layoutY="82.0" prefHeight="536.0"
@@ -270,7 +274,7 @@
 																	<children>
 																		<TableView fx:id="breakfastTable" layoutX="43.0"
 																			layoutY="261.0" prefHeight="463.0" prefWidth="587.0"
-																			AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0"
+																			AnchorPane.bottomAnchor="50.0" AnchorPane.leftAnchor="0.0"
 																			AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
 																			<columns>
 																				<TableColumn fx:id="bc1" prefWidth="75.0"
@@ -282,6 +286,10 @@
 																				<TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
 																			</columnResizePolicy>
 																		</TableView>
+																		<Label layoutX="152.0" layoutY="626.0" text="Suma" />
+																		<Label layoutX="282.0" layoutY="626.0" text="Label" />
+																		<Separator layoutX="241.0" layoutY="625.0"
+																			prefWidth="200.0" />
 																	</children>
 																</AnchorPane>
 															</content>
@@ -293,7 +301,7 @@
 																	<children>
 																		<TableView fx:id="lunchTable" layoutX="194.0"
 																			layoutY="300.0" prefHeight="463.0" prefWidth="587.0"
-																			AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0"
+																			AnchorPane.bottomAnchor="50.0" AnchorPane.leftAnchor="0.0"
 																			AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
 																			<columns>
 																				<TableColumn fx:id="lc1" prefWidth="75.0"
@@ -305,6 +313,10 @@
 																				<TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
 																			</columnResizePolicy>
 																		</TableView>
+																		<Label layoutX="128.0" layoutY="620.0" text="Suma" />
+																		<Label layoutX="222.0" layoutY="620.0" text="Label" />
+																		<Separator layoutX="104.0" layoutY="635.0"
+																			prefWidth="200.0" />
 																	</children>
 																</AnchorPane>
 															</content>
@@ -316,7 +328,7 @@
 																	<children>
 																		<TableView fx:id="dinnerTable" layoutX="194.0"
 																			layoutY="309.0" prefHeight="463.0" prefWidth="587.0"
-																			AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0"
+																			AnchorPane.bottomAnchor="50.0" AnchorPane.leftAnchor="0.0"
 																			AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
 																			<columns>
 																				<TableColumn fx:id="dc1" prefWidth="75.0"
@@ -328,6 +340,10 @@
 																				<TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
 																			</columnResizePolicy>
 																		</TableView>
+																		<Label layoutX="118.0" layoutY="626.0" text="Suma" />
+																		<Label layoutX="189.0" layoutY="626.0" text="Label" />
+																		<Separator layoutX="137.0" layoutY="625.0"
+																			prefWidth="200.0" />
 																	</children>
 																</AnchorPane>
 															</content>
@@ -338,7 +354,7 @@
 																	prefHeight="180.0" prefWidth="200.0">
 																	<children>
 																		<TableView fx:id="teaTimeTable" prefHeight="463.0"
-																			prefWidth="587.0" AnchorPane.bottomAnchor="0.0"
+																			prefWidth="587.0" AnchorPane.bottomAnchor="50.0"
 																			AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0"
 																			AnchorPane.topAnchor="0.0">
 																			<columns>
@@ -351,6 +367,10 @@
 																				<TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
 																			</columnResizePolicy>
 																		</TableView>
+																		<Label layoutX="149.0" layoutY="628.0" text="Suma" />
+																		<Label layoutX="277.0" layoutY="628.0" text="Label" />
+																		<Separator layoutX="125.0" layoutY="627.0"
+																			prefWidth="200.0" />
 																	</children>
 																</AnchorPane>
 															</content>
@@ -362,7 +382,7 @@
 																	<children>
 																		<TableView fx:id="supperTable" layoutX="337.0"
 																			layoutY="315.0" prefHeight="463.0" prefWidth="587.0"
-																			AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0"
+																			AnchorPane.bottomAnchor="50.0" AnchorPane.leftAnchor="0.0"
 																			AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
 																			<columns>
 																				<TableColumn fx:id="sc1" prefWidth="75.0"
@@ -374,6 +394,10 @@
 																				<TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
 																			</columnResizePolicy>
 																		</TableView>
+																		<Label layoutX="132.0" layoutY="628.0" text="Suma" />
+																		<Label layoutX="266.0" layoutY="628.0" text="Label" />
+																		<Separator layoutX="138.0" layoutY="627.0"
+																			prefWidth="200.0" />
 																	</children>
 																</AnchorPane>
 															</content>
@@ -385,7 +409,7 @@
 																	<children>
 																		<TableView fx:id="betweenMealsTable"
 																			layoutX="385.0" layoutY="283.0" prefHeight="463.0"
-																			prefWidth="587.0" AnchorPane.bottomAnchor="0.0"
+																			prefWidth="587.0" AnchorPane.bottomAnchor="50.0"
 																			AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0"
 																			AnchorPane.topAnchor="0.0">
 																			<columns>
@@ -398,6 +422,10 @@
 																				<TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
 																			</columnResizePolicy>
 																		</TableView>
+																		<Label layoutX="124.0" layoutY="634.0" text="Suma" />
+																		<Label layoutX="277.0" layoutY="626.0" text="Label" />
+																		<Separator layoutX="143.0" layoutY="625.0"
+																			prefWidth="200.0" />
 																	</children>
 																</AnchorPane>
 															</content>

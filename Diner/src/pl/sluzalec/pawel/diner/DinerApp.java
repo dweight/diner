@@ -30,7 +30,7 @@ import pl.sluzalec.pawel.diner.view.MainOverviewController;
 
 public class DinerApp extends Application {
 
-	public final String APP_NAME = "Diner";
+	public final String APP_NAME = "Diner 0.1";
 	private Stage primaryStage;
 	private AnchorPane mainOverview;
 	boolean ok = false;
